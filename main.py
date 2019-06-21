@@ -1,4 +1,4 @@
-from parse_money_tracker_data import ParseData
+from file_data_parser import ParseData
 from aggregated_money_tracker import AggregatedMoneyTracker
 from money_tracker import MoneyTracker
 from money_tracker_menu import MoneyTrackerMenu

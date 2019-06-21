@@ -16,15 +16,16 @@ class ParseData:
         record_components = [component.strip() for component in record_components]
         return (record_components[0], record_components[1], record_components[2])
 
-    def is_date(self. string):
+    def is_date(self, string):
         return string.startswith(self.date_delimiter) and string.endswith(self.date_delimiter)
 
     def add_date_to_records_dict(self, string):
         current_date = self.extract_date(string, self.date_delimiter)
-        self.parsed_data[current_date] = template_value_for_date
+        self.parsed_data[current_date] = self.template_value_for_date
+        return current_date
 
-    def add_record_to_records_dict(self, string):
-        amount, category, category_type = self.extract_record_info(line, self.record_info_delimiter)
+    def add_record_to_records_dict(self, string, current_date):
+        amount, category, category_type = self.extract_record_info(string, self.record_info_delimiter)
         amount_category = {'amount': float(amount), 'category': category}
         if category_type == 'New Expense':
             self.parsed_data[current_date][1]['expense'].append(amount_category)
@@ -36,13 +37,14 @@ class ParseData:
         if len(lines_data) <= 1:
             return
 
+        current_date = ""
         for line in lines_data:
             if len(line) == 0:
                 continue
-            elif is_date(line):
-                add_date_to_records_dict(line)
+            elif self.is_date(line):
+                current_date = self.add_date_to_records_dict(line)
             else:
-                add_record_to_records_dict(line)
+                self.add_record_to_records_dict(line, current_date)
 
     def parse(self):
         with open(self.filename, 'a+') as f:

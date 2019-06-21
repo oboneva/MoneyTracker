@@ -16,9 +16,7 @@ class Category:
         return '{}$ - {} - {}'.format(self.amount, self.name, self.date)
 
     def __eq__(self, other):
-        return self.amount == other.amount and
-                self.name == other.name and
-                self.date == other.date
+        return self.amount == other.amount and self.name == other.name and self.date == other.date
 
 if __name__ == '__main__':
     main()

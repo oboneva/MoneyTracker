@@ -62,7 +62,7 @@ class MoneyTrackerMenu:
             print("Goodbye!")
             return
 
-        self.choose()
+        self.run_menu()
 
 if __name__ == '__main__':
     main()

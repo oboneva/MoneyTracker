@@ -50,7 +50,7 @@ class MoneyTracker:
         return ordered_by_category
 
     def show_expenses_ordered_by_category(self):
-        ordered_by_category = generate_expenses_ordered_by_category()
+        ordered_by_category = self.generate_expenses_ordered_by_category()
 
         for category, records in sorted(ordered_by_category.items()):
             print("=== {} ===".format(category))

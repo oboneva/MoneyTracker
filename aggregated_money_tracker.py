@@ -46,7 +46,7 @@ class AggregatedMoneyTracker:
         return data
 
     def save_changes_to_file(self, username):
-        data = generate_to_data()
+        data = self.generate_to_data()
 
         with open("money_tracker_{}.txt".format(username), 'w') as f:
             for k, v in sorted(data.items()):
